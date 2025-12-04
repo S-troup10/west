@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join the Club | West Basketball</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['Space Grotesk','ui-sans-serif','system-ui'] }, colors:{clubGreen:'#16a34a',clubDark:'#0f2f1d'} } } };</script>
+  <style>body{background:#f6f8f6;}</style>
+</head>
+<body class="text-slate-900">
+  <header class="sticky top-0 z-30 bg-white/90 backdrop-blur border-b border-slate-200" id="site-nav"></header>
+
+  <main class="max-w-5xl mx-auto px-6 pb-16 pt-10 space-y-12">
+    <header class="space-y-3">
+      <p class="text-xs uppercase tracking-[0.3em] text-clubGreen">Join</p>
+      <h1 class="text-4xl font-semibold text-clubDark">Join the club</h1>
+      <p class="text-slate-600">Choose the right stream for your player. Details stay editable in the admin page.</p>
+    </header>
+
+    <section id="u8u10" class="rounded-3xl border border-slate-200 bg-white p-6 space-y-3 shadow-card">
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl font-semibold text-clubDark">U8 & U10</h2>
+        <span class="text-xs text-clubGreen border border-green-200 rounded-full px-3 py-1">Beginners</span>
+      </div>
+      <p id="join-u8u10" class="text-slate-700"></p>
+      <a href="mailto:registrar@westbasketball.com.au" class="text-sm text-clubGreen">Email registrar</a>
+    </section>
+
+    <section id="juniors" class="rounded-3xl border border-slate-200 bg-white p-6 space-y-3 shadow-card">
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl font-semibold text-clubDark">Juniors (U12-U18)</h2>
+        <span class="text-xs text-clubGreen border border-green-200 rounded-full px-3 py-1">Competition</span>
+      </div>
+      <p id="join-juniors" class="text-slate-700"></p>
+      <div class="flex gap-3 flex-wrap text-sm">
+        <a href="https://example.com/grading" class="rounded-xl border border-slate-200 px-4 py-2 hover:border-clubGreen">Grading details</a>
+        <a href="https://example.com/training" class="rounded-xl border border-slate-200 px-4 py-2 hover:border-clubGreen">Training schedule</a>
+      </div>
+    </section>
+
+    <section class="rounded-3xl border border-slate-200 bg-white p-6 space-y-3 shadow-card">
+      <h2 class="text-2xl font-semibold text-clubDark">Need help?</h2>
+      <p class="text-slate-700">If you need payment plans or have accessibility needs, reach out. We want everyone to play.</p>
+      <a href="about.html#contact" class="text-sm text-clubGreen">Talk to us</a>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white" id="site-footer"></footer>
+
+  <script src="data.js"></script>
+  <script src="common.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderNav('join');
+      renderFooter();
+      renderJoinContent();
+    });
+  </script>
+</body>
+</html>

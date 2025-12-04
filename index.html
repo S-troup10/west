@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>West Basketball Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Space Grotesk', 'ui-sans-serif', 'system-ui'] },
+          colors: {
+            clubGreen: '#16a34a',
+            clubDark: '#0f2f1d',
+            clubSoft: '#f7f9f7'
+          },
+          boxShadow: {
+            card: '0 12px 32px rgba(15,47,29,0.12)'
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body { background: #f7f9f7; }
+  </style>
+</head>
+<body class="text-slate-900 min-h-screen">
+  <header class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-slate-200" id="site-nav"></header>
+
+  <main class="max-w-6xl mx-auto px-6 pb-16 pt-10 space-y-16">
+    <!-- HERO -->
+    <section class="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 items-center">
+      <div class="space-y-6">
+        <div class="inline-flex items-center gap-3 rounded-full bg-white px-4 py-2 border border-slate-200 shadow-card">
+          <img src="logo.png" alt="Club logo" class="h-10 w-10 rounded-full border border-slate-200 bg-white object-contain" />
+          <div>
+            <p class="text-xs uppercase tracking-[0.3em] text-clubGreen">West Basketball Club</p>
+            <p class="text-sm text-slate-600">Youth basketball in Newcastle</p>
+          </div>
+        </div>
+        <div class="space-y-3">
+          <h1 id="hero-title" class="text-4xl sm:text-5xl font-semibold leading-tight text-clubDark">A club for every age and stage</h1>
+          <p id="hero-sub" class="text-lg text-slate-700 max-w-2xl">
+            From U8s starting out to U18s chasing championships, we're here to teach skills, values, and love for the game.
+          </p>
+          <p class="text-slate-800" id="club-intro-text"></p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a id="hero-primary" href="join.html" class="inline-flex items-center gap-2 rounded-full bg-clubGreen px-6 py-3 text-white font-semibold shadow-card">Join the club</a>
+          <a id="hero-secondary" href="coaches.html" class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-6 py-3 text-slate-800 hover:border-clubGreen">Meet our coaches</a>
+        </div>
+        <div class="grid grid-cols-3 gap-4 text-sm">
+          <div class="rounded-2xl bg-white border border-slate-200 p-4 shadow-card">
+            <p class="text-xs text-slate-500">Teams</p>
+            <p class="text-2xl font-semibold text-clubDark">28</p>
+            <p class="text-xs text-clubGreen">U8-U18</p>
+          </div>
+          <div class="rounded-2xl bg-white border border-slate-200 p-4 shadow-card">
+            <p class="text-xs text-slate-500">Coaches & Crew</p>
+            <p class="text-2xl font-semibold text-clubDark">40</p>
+            <p class="text-xs text-clubGreen">All volunteers</p>
+          </div>
+          <div class="rounded-2xl bg-white border border-slate-200 p-4 shadow-card">
+            <p class="text-xs text-slate-500">Courts</p>
+            <p class="text-2xl font-semibold text-clubDark">6</p>
+            <p class="text-xs text-clubGreen">Training hubs</p>
+          </div>
+        </div>
+      </div>
+      <div class="grid gap-4">
+        <div class="rounded-3xl overflow-hidden border border-slate-200 shadow-card bg-white">
+          <img src="U12-Knights.jpg" alt="Junior players in game" class="h-[260px] w-full object-cover" />
+          <div class="p-4 text-sm text-slate-700">Fast-paced sessions with supportive coaches and plenty of touches.</div>
+        </div>
+        <div class="rounded-3xl overflow-hidden border border-slate-200 shadow-card bg-white grid grid-cols-[0.8fr_1.2fr]">
+          <img src="U14-West-Raiders.jpg" alt="Team huddle" class="h-40 w-full object-cover" />
+          <div class="p-4 flex flex-col justify-center space-y-2 text-sm">
+            <p class="text-xs uppercase tracking-[0.25em] text-clubGreen">Why West?</p>
+            <p class="text-slate-800">Values-led culture, local roots, and clear pathways for every player.</p>
+            <a href="about.html" class="text-clubGreen">Learn more ?</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMS -->
+    <section class="space-y-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-xs uppercase tracking-[0.3em] text-clubGreen">Programs</p>
+          <h2 class="text-3xl font-semibold text-clubDark">Pathways for every player</h2>
+        </div>
+        <a href="join.html" class="text-sm text-clubGreen">View all</a>
+      </div>
+      <div class="grid md:grid-cols-3 gap-4">
+        <article class="rounded-2xl bg-white border border-slate-200 p-4 shadow-card space-y-2">
+          <h3 class="text-lg font-semibold text-clubDark">U8-U10 Foundations</h3>
+          <p class="text-slate-600">High-touch coaching, fun drills, and lots of ball touches to build confidence.</p>
+          <a href="join.html#u8u10" class="text-sm text-clubGreen">Learn more ?</a>
+        </article>
+        <article class="rounded-2xl bg-white border border-slate-200 p-4 shadow-card space-y-2">
+          <h3 class="text-lg font-semibold text-clubDark">Juniors U12-U18</h3>
+          <p class="text-slate-600">Structured training blocks, game IQ, and fitness to compete and enjoy the game.</p>
+          <a href="join.html#juniors" class="text-sm text-clubGreen">Learn more ?</a>
+        </article>
+        <article class="rounded-2xl bg-white border border-slate-200 p-4 shadow-card space-y-2">
+          <h3 class="text-lg font-semibold text-clubDark">Coaches & Volunteers</h3>
+          <p class="text-slate-600">Guides, templates, and mentorship to run consistent, safe, welcoming sessions.</p>
+          <a href="coaches.html" class="text-sm text-clubGreen">See resources ?</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- GALLERY / STORY -->
+    <section class="space-y-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-xs uppercase tracking-[0.3em] text-clubGreen">Club moments</p>
+          <h2 class="text-3xl font-semibold text-clubDark">On-court and in the stands</h2>
+        </div>
+        <span class="text-sm text-slate-500">Swipe through</span>
+      </div>
+      <div class="grid md:grid-cols-3 gap-4">
+        <div class="rounded-3xl overflow-hidden border border-slate-200 shadow-card bg-white">
+          <img src="U12-Knights.jpg" alt="Game" class="h-56 w-full object-cover" />
+          <div class="p-3 text-sm text-slate-700">Fast breaks and teamwork at training night.</div>
+        </div>
+        <div class="rounded-3xl overflow-hidden border border-slate-200 shadow-card bg-white">
+          <img src="U14-West-Raiders.jpg" alt="Team" class="h-56 w-full object-cover" />
+          <div class="p-3 text-sm text-slate-700">Huddles that build confidence before tip-off.</div>
+        </div>
+        <div class="rounded-3xl overflow-hidden border border-slate-200 shadow-card bg-white flex flex-col justify-between">
+          <div class="p-4 space-y-2">
+            <p class="text-xs uppercase tracking-[0.25em] text-clubGreen">What parents say</p>
+            <p class="text-slate-800 text-sm">�West feels like family. Coaches are supportive and my kid loves every session.�</p>
+            <p class="text-xs text-slate-500">� Local parent</p>
+          </div>
+          <div class="bg-gradient-to-r from-green-100 to-emerald-100 h-12 w-full"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWS + QUICK LINKS -->
+    <section class="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 items-start">
+      <div class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-semibold text-clubDark">Latest news</h2>
+          <a href="about.html#news" class="text-sm text-clubGreen">See all</a>
+        </div>
+        <div id="news-grid" class="grid sm:grid-cols-2 gap-4"></div>
+      </div>
+      <div class="space-y-4">
+        <h2 class="text-2xl font-semibold text-clubDark">Quick links</h2>
+        <div id="quick-links" class="grid gap-3"></div>
+        <div class="rounded-2xl bg-white border border-slate-200 p-4 shadow-card text-sm space-y-2">
+          <div class="flex items-center gap-2 text-clubGreen">
+            <span class="h-2 w-2 rounded-full bg-clubGreen"></span>
+            Game day essentials
+          </div>
+          <p class="text-slate-600">Uniform? Check. Drink bottle? Check. Be early, be loud, be respectful.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPONSORS -->
+    <section class="space-y-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl font-semibold text-clubDark">Sponsors</h2>
+        <a href="sponsors.html" class="text-sm text-clubGreen">Sponsor the club</a>
+      </div>
+      <p class="text-slate-600">We are grateful for the partners who keep our programs running. Swap logos in the admin page anytime.</p>
+      <div id="sponsor-logos" class="grid grid-cols-2 sm:grid-cols-3 gap-4"></div>
+    </section>
+
+    <!-- CTA -->
+    <section class="rounded-3xl border border-slate-200 bg-white shadow-card p-8 grid md:grid-cols-[1.2fr_0.8fr] gap-6 items-center">
+      <div class="space-y-3">
+        <p class="text-xs uppercase tracking-[0.3em] text-clubGreen">Ready?</p>
+        <h3 class="text-2xl font-semibold text-clubDark">Join West Basketball or volunteer with us</h3>
+        <p class="text-slate-700">Pick your age group, grab a uniform, and we'll see you on court. Coaches and volunteers always welcome.</p>
+        <div class="flex gap-3 flex-wrap">
+          <a href="join.html" class="rounded-full bg-clubGreen px-6 py-3 text-white font-semibold shadow-card">Register today</a>
+          <a href="coaches.html" class="rounded-full border border-slate-200 px-6 py-3 text-slate-800 hover:border-clubGreen">Coach / volunteer</a>
+        </div>
+      </div>
+      <div class="rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-card">
+        <img src="U14-West-Raiders.jpg" alt="Players" class="h-52 w-full object-cover" />
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white" id="site-footer"></footer>
+
+  <script src="data.js"></script>
+  <script src="common.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderNav('home');
+      renderFooter();
+      renderHero();
+      renderNews('news-grid');
+      renderQuickLinks('quick-links');
+      renderSponsors('sponsor-logos');
+      const clubIntro = document.getElementById('club-intro-text');
+      if (clubIntro) clubIntro.textContent = window.siteContent.club.homeIntro;
+      const homeAbout = document.getElementById('home-about');
+      if (homeAbout) homeAbout.textContent = window.siteContent.about.intro;
+      const homeValues = document.getElementById('home-values');
+      if (homeValues) {
+        const values = window.siteContent.about.values || [];
+        homeValues.innerHTML = values.map(v => `<span class="px-3 py-1 rounded-full border border-slate-200 bg-white shadow-card text-slate-800">${v}</span>`).join('');
+      }
+    });
+  </script>
+</body>
+</html>

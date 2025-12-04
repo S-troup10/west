@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merchandise | West Basketball</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['Space Grotesk','ui-sans-serif','system-ui'] }, colors:{clubGreen:'#16a34a',clubDark:'#0f2f1d'} } } };</script>
+  <style>body{background:#f6f8f6;}</style>
+</head>
+<body class="text-slate-900">
+  <header class="sticky top-0 z-30 bg-white/90 backdrop-blur border-b border-slate-200" id="site-nav"></header>
+
+  <main class="max-w-5xl mx-auto px-6 pb-16 pt-10 space-y-10">
+    <section class="space-y-3">
+      <p class="text-xs uppercase tracking-[0.3em] text-clubGreen">Merchandise</p>
+      <h1 class="text-4xl font-semibold text-clubDark">Uniforms & gear</h1>
+      <p id="merch-blurb" class="text-slate-700"></p>
+    </section>
+
+    <section class="rounded-3xl border border-slate-200 bg-white p-6 space-y-3 shadow-card">
+      <h2 class="text-2xl font-semibold text-clubDark">Shop</h2>
+      <p class="text-slate-700">Order singlets, shorts, hoodies, and accessories online.</p>
+      <a id="merch-store-link" href="#" class="inline-flex items-center gap-2 rounded-full bg-clubGreen px-5 py-3 text-white font-semibold shadow-card">Go to merch store</a>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white" id="site-footer"></footer>
+
+  <script src="data.js"></script>
+  <script src="common.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderNav('merch');
+      renderFooter();
+      renderMerchContent();
+    });
+  </script>
+</body>
+</html>
