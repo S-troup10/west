@@ -4,55 +4,104 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Join the Club | West Basketball</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['Space Grotesk','ui-sans-serif','system-ui'] }, colors:{clubGreen:'#16a34a',clubDark:'#0f2f1d'} } } };</script>
-  <style>body{background:#f6f8f6;}</style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Outfit', 'ui-sans-serif', 'system-ui'] },
+          colors: {
+            primary: '#10b981',
+            accent: '#06d6a0',
+            dark: '#0a0a0a',
+            darker: '#050505',
+            light: '#f8fafc'
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body { background: #0a0a0a; color: #f8fafc; overflow-x: hidden; }
+    .glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); }
+    .gradient-text { background: linear-gradient(135deg, #10b981 0%, #06d6a0 50%, #34d399 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .glow { box-shadow: 0 0 40px rgba(16, 185, 129, 0.3); }
+    .btn-primary { background: linear-gradient(135deg, #10b981 0%, #059669 100%); transition: all 0.3s ease; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(16, 185, 129, 0.4); }
+    .btn-secondary { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s ease; }
+    .btn-secondary:hover { background: rgba(255,255,255,0.15); border-color: #10b981; }
+    .card-hover { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .card-hover:hover { transform: translateY(-8px) scale(1.02); }
+    .nav-blur { background: rgba(10,10,10,0.8); backdrop-filter: blur(20px); }
+    .section-fade { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
+    .section-fade.visible { opacity: 1; transform: translateY(0); }
+  </style>
 </head>
-<body class="text-slate-900">
-  <header class="sticky top-0 z-30 bg-white/90 backdrop-blur border-b border-slate-200" id="site-nav"></header>
+<body class="text-light min-h-screen">
+  <header class="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-white/5" id="site-nav"></header>
 
-  <main class="max-w-5xl mx-auto px-6 pb-16 pt-10 space-y-12">
-    <header class="space-y-3">
-      <p class="text-xs uppercase tracking-[0.3em] text-clubGreen">Join</p>
-      <h1 class="text-4xl font-semibold text-clubDark">Join the club</h1>
-      <p class="text-slate-600">Choose the right stream for your player. Details stay editable in the admin page.</p>
-    </header>
-
-    <section id="u8u10" class="rounded-3xl border border-slate-200 bg-white p-6 space-y-3 shadow-card">
-      <div class="flex items-center justify-between">
-        <h2 class="text-2xl font-semibold text-clubDark">U8 & U10</h2>
-        <span class="text-xs text-clubGreen border border-green-200 rounded-full px-3 py-1">Beginners</span>
-      </div>
-      <p id="join-u8u10" class="text-slate-700"></p>
-      <a href="mailto:registrar@westbasketball.com.au" class="text-sm text-clubGreen">Email registrar</a>
-    </section>
-
-    <section id="juniors" class="rounded-3xl border border-slate-200 bg-white p-6 space-y-3 shadow-card">
-      <div class="flex items-center justify-between">
-        <h2 class="text-2xl font-semibold text-clubDark">Juniors (U12-U18)</h2>
-        <span class="text-xs text-clubGreen border border-green-200 rounded-full px-3 py-1">Competition</span>
-      </div>
-      <p id="join-juniors" class="text-slate-700"></p>
-      <div class="flex gap-3 flex-wrap text-sm">
-        <a href="https://example.com/grading" class="rounded-xl border border-slate-200 px-4 py-2 hover:border-clubGreen">Grading details</a>
-        <a href="https://example.com/training" class="rounded-xl border border-slate-200 px-4 py-2 hover:border-clubGreen">Training schedule</a>
+  <main class="pt-24">
+    <section class="py-16 px-6 relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl"></div>
+      <div class="max-w-5xl mx-auto relative">
+        <div class="section-fade">
+          <span id="join-hero-tag" class="text-primary uppercase tracking-[0.3em] text-sm font-medium">Join Us</span>
+          <h1 class="text-5xl md:text-6xl font-bold mt-4 mb-6">
+            <span id="join-hero-title">Join the</span> <span id="join-hero-highlight" class="gradient-text">Club</span>
+          </h1>
+          <p id="join-hero-description" class="text-xl text-white/70 max-w-2xl">Choose the right stream for your player. We have programs for every age and skill level.</p>
+        </div>
       </div>
     </section>
 
-    <section class="rounded-3xl border border-slate-200 bg-white p-6 space-y-3 shadow-card">
-      <h2 class="text-2xl font-semibold text-clubDark">Need help?</h2>
-      <p class="text-slate-700">If you need payment plans or have accessibility needs, reach out. We want everyone to play.</p>
-      <a href="about.html#contact" class="text-sm text-clubGreen">Talk to us</a>
+    <section class="py-8 px-6">
+      <div class="max-w-5xl mx-auto space-y-8" id="join-streams"></div>
+      <div class="max-w-5xl mx-auto space-y-8">
+        <div class="section-fade">
+          <div class="glass glow rounded-3xl p-8 text-center relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-48 h-48 bg-primary/20 rounded-full blur-3xl"></div>
+            <div class="relative">
+              <span id="join-help-tag" class="text-primary uppercase tracking-[0.3em] text-sm font-medium block mb-4">Support</span>
+              <div class="w-14 h-14 rounded-2xl bg-primary/20 flex items-center justify-center mx-auto mb-4">
+                <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              </div>
+              <h2 class="text-2xl font-bold text-white mb-4"><span id="join-help-title">Need Help?</span></h2>
+              <p id="join-help-text" class="text-white/60 mb-6 max-w-md mx-auto">If you need payment plans or have accessibility needs, reach out. We want everyone to play.</p>
+              <a id="join-help-cta" href="about.html#contact" class="btn-primary inline-flex items-center gap-2 rounded-full px-8 py-4 text-white font-semibold">
+                Talk to us
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer class="border-t border-slate-200 bg-white" id="site-footer"></footer>
+  <footer class="border-t border-white/10 bg-darker mt-16" id="site-footer"></footer>
 
   <script src="data.js"></script>
   <script src="common.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      renderNav('join');
+      renderFooter();
+      renderJoinContent();
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.section-fade').forEach(el => observer.observe(el));
+    });
+
+    window.addEventListener('sitecontent:updated', () => {
       renderNav('join');
       renderFooter();
       renderJoinContent();

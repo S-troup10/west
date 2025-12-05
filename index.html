@@ -6,215 +6,550 @@
   <title>West Basketball Club</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { sans: ['Space Grotesk', 'ui-sans-serif', 'system-ui'] },
+          fontFamily: { sans: ['Outfit', 'ui-sans-serif', 'system-ui'] },
           colors: {
-            clubGreen: '#16a34a',
-            clubDark: '#0f2f1d',
-            clubSoft: '#f7f9f7'
-          },
-          boxShadow: {
-            card: '0 12px 32px rgba(15,47,29,0.12)'
+            primary: '#10b981',
+            accent: '#06d6a0',
+            dark: '#0a0a0a',
+            darker: '#050505',
+            light: '#f8fafc'
           }
         }
       }
     };
   </script>
   <style>
-    body { background: #f7f9f7; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { 
+      background: #0a0a0a; 
+      color: #f8fafc;
+      overflow-x: hidden;
+    }
+    
+    .parallax-hero {
+      position: relative;
+      height: 100vh;
+      min-height: 700px;
+      overflow: hidden;
+    }
+    
+    .parallax-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120%;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+      z-index: 0;
+    }
+    
+    .parallax-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120%;
+      object-fit: cover;
+      opacity: 0.4;
+      z-index: 1;
+      will-change: transform;
+    }
+    
+    .parallax-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, 
+        rgba(10,10,10,0.3) 0%, 
+        rgba(10,10,10,0.5) 50%,
+        rgba(10,10,10,0.95) 100%);
+      z-index: 2;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 3;
+    }
+    
+    .glass {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .glass-dark {
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, #10b981 0%, #06d6a0 50%, #34d399 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .glow {
+      box-shadow: 0 0 40px rgba(16, 185, 129, 0.3);
+    }
+    
+    .glow-text {
+      text-shadow: 0 0 40px rgba(16, 185, 129, 0.5);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px rgba(16, 185, 129, 0.4);
+    }
+    
+    .btn-secondary {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.15);
+      border-color: #10b981;
+      transform: translateY(-2px);
+    }
+    
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-8px) scale(1.02);
+    }
+    
+    .stat-card {
+      background: linear-gradient(135deg, rgba(16,185,129,0.1) 0%, rgba(6,214,160,0.05) 100%);
+      border: 1px solid rgba(16,185,129,0.2);
+    }
+    
+    .section-fade {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
+    }
+    
+    .section-fade.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    .pulse-glow {
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 20px rgba(16,185,129,0.3); }
+      50% { box-shadow: 0 0 40px rgba(16,185,129,0.6); }
+    }
+    
+    .marquee {
+      animation: marquee 20s linear infinite;
+    }
+    
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    
+    .image-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+    }
+    
+    .image-card img {
+      transition: transform 0.6s ease;
+    }
+    
+    .image-card:hover img {
+      transform: scale(1.1);
+    }
+    
+    .image-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+    }
+    
+    .nav-blur {
+      background: rgba(10,10,10,0.8);
+      backdrop-filter: blur(20px);
+    }
+    
+    .scroll-indicator {
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+      40% { transform: translateY(-20px) translateX(-50%); }
+      60% { transform: translateY(-10px) translateX(-50%); }
+    }
   </style>
 </head>
-<body class="text-slate-900 min-h-screen">
-  <header class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-slate-200" id="site-nav"></header>
+<body class="text-light min-h-screen">
+  <header class="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-white/5" id="site-nav"></header>
 
-  <main class="max-w-6xl mx-auto px-6 pb-16 pt-10 space-y-16">
-    <!-- HERO -->
-    <section class="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 items-center">
-      <div class="space-y-6">
-        <div class="inline-flex items-center gap-3 rounded-full bg-white px-4 py-2 border border-slate-200 shadow-card">
-          <img src="logo.png" alt="Club logo" class="h-10 w-10 rounded-full border border-slate-200 bg-white object-contain" />
-          <div>
-            <p class="text-xs uppercase tracking-[0.3em] text-clubGreen">West Basketball Club</p>
-            <p class="text-sm text-slate-600">Youth basketball in Newcastle</p>
+  <main>
+    <section class="parallax-hero">
+      <div class="parallax-bg"></div>
+      <img src="U12-Knights.jpg" alt="Basketball players" class="parallax-image" id="parallax-img" />
+      <div class="parallax-overlay"></div>
+      
+      <div class="hero-content h-full flex items-center justify-center px-6">
+        <div class="max-w-5xl mx-auto text-center space-y-8">
+          <div class="inline-flex items-center gap-3 glass rounded-full px-5 py-2.5 mb-4">
+            <span class="w-2 h-2 rounded-full bg-primary pulse-glow"></span>
+            <span id="home-hero-kicker" class="text-sm font-medium tracking-wider uppercase text-white/80">Youth Basketball in Newcastle</span>
           </div>
-        </div>
-        <div class="space-y-3">
-          <h1 id="hero-title" class="text-4xl sm:text-5xl font-semibold leading-tight text-clubDark">A club for every age and stage</h1>
-          <p id="hero-sub" class="text-lg text-slate-700 max-w-2xl">
+          
+          <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight">
+            <span id="hero-title" class="block text-white">Where Champions</span>
+            <span id="hero-highlight" class="block gradient-text glow-text">Are Made</span>
+          </h1>
+          
+          <p id="hero-sub" class="text-xl md:text-2xl text-white/70 max-w-2xl mx-auto leading-relaxed">
             From U8s starting out to U18s chasing championships, we're here to teach skills, values, and love for the game.
           </p>
-          <p class="text-slate-800" id="club-intro-text"></p>
-        </div>
-        <div class="flex flex-wrap gap-3">
-          <a id="hero-primary" href="join.html" class="inline-flex items-center gap-2 rounded-full bg-clubGreen px-6 py-3 text-white font-semibold shadow-card">Join the club</a>
-          <a id="hero-secondary" href="coaches.html" class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-6 py-3 text-slate-800 hover:border-clubGreen">Meet our coaches</a>
-        </div>
-        <div class="grid grid-cols-3 gap-4 text-sm">
-          <div class="rounded-2xl bg-white border border-slate-200 p-4 shadow-card">
-            <p class="text-xs text-slate-500">Teams</p>
-            <p class="text-2xl font-semibold text-clubDark">28</p>
-            <p class="text-xs text-clubGreen">U8-U18</p>
+          
+          <div class="flex flex-wrap justify-center gap-4 pt-4">
+            <a id="hero-primary" href="join.html" class="btn-primary inline-flex items-center gap-2 rounded-full px-8 py-4 text-white font-semibold text-lg">
+              Join the Club
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </a>
+            <a id="hero-secondary" href="coaches.html" class="btn-secondary inline-flex items-center gap-2 rounded-full px-8 py-4 text-white font-medium text-lg">
+              Meet Our Coaches
+            </a>
           </div>
-          <div class="rounded-2xl bg-white border border-slate-200 p-4 shadow-card">
-            <p class="text-xs text-slate-500">Coaches & Crew</p>
-            <p class="text-2xl font-semibold text-clubDark">40</p>
-            <p class="text-xs text-clubGreen">All volunteers</p>
-          </div>
-          <div class="rounded-2xl bg-white border border-slate-200 p-4 shadow-card">
-            <p class="text-xs text-slate-500">Courts</p>
-            <p class="text-2xl font-semibold text-clubDark">6</p>
-            <p class="text-xs text-clubGreen">Training hubs</p>
-          </div>
+          
+
         </div>
       </div>
-      <div class="grid gap-4">
-        <div class="rounded-3xl overflow-hidden border border-slate-200 shadow-card bg-white">
-          <img src="U12-Knights.jpg" alt="Junior players in game" class="h-[260px] w-full object-cover" />
-          <div class="p-4 text-sm text-slate-700">Fast-paced sessions with supportive coaches and plenty of touches.</div>
+      
+      <div class="absolute bottom-8 left-1/2 scroll-indicator">
+        <div class="flex flex-col items-center gap-2 text-white/50">
+          <span class="text-xs uppercase tracking-widest">Scroll</span>
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
         </div>
-        <div class="rounded-3xl overflow-hidden border border-slate-200 shadow-card bg-white grid grid-cols-[0.8fr_1.2fr]">
-          <img src="U14-West-Raiders.jpg" alt="Team huddle" class="h-40 w-full object-cover" />
-          <div class="p-4 flex flex-col justify-center space-y-2 text-sm">
-            <p class="text-xs uppercase tracking-[0.25em] text-clubGreen">Why West?</p>
-            <p class="text-slate-800">Values-led culture, local roots, and clear pathways for every player.</p>
-            <a href="about.html" class="text-clubGreen">Learn more ?</a>
+      </div>
+    </section>
+
+    <section class="py-24 px-6 relative">
+      <div class="absolute inset-0 bg-gradient-to-b from-dark via-transparent to-transparent"></div>
+      <div class="max-w-6xl mx-auto relative">
+        <div class="section-fade">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="h-px flex-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+            <span id="home-programs-tag" class="text-primary uppercase tracking-[0.3em] text-sm font-medium">Programs</span>
+            <div class="h-px flex-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
+            <span id="home-programs-title" class="gradient-text">Pathways for Every Player</span>
+          </h2>
+        </div>
+        
+        <div id="programs-list" class="grid md:grid-cols-3 gap-6 section-fade"></div>
+      </div>
+    </section>
+
+    <section class="py-24 px-6 relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
+      
+      <div class="max-w-6xl mx-auto relative">
+        <div class="section-fade">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="h-px flex-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+            <span id="home-gallery-tag" class="text-primary uppercase tracking-[0.3em] text-sm font-medium">Gallery</span>
+            <div class="h-px flex-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
+            <span id="home-gallery-title" class="gradient-text">On Court &amp; In the Stands</span>
+          </h2>
+          <p id="home-gallery-subtitle" class="text-center text-white/60 max-w-2xl mx-auto mb-10">Look inside our courts and community.</p>
+        </div>
+        
+        <div id="home-featured-gallery" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 section-fade"></div>
+      </div>
+    </section>
+
+    <section class="py-24 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-start">
+          <div class="space-y-8 section-fade">
+            <div>
+              <span id="home-news-tag" class="text-primary uppercase tracking-[0.3em] text-sm font-medium">Latest</span>
+              <h2 class="text-4xl md:text-5xl font-bold mt-2">
+                <span id="home-news-title" class="gradient-text">Club News</span>
+              </h2>
+            </div>
+            <div id="news-grid" class="space-y-4"></div>
+          </div>
+          
+          <div class="space-y-8 section-fade">
+            <div>
+              <span id="home-links-tag" class="text-primary uppercase tracking-[0.3em] text-sm font-medium">Navigate</span>
+              <h2 class="text-4xl md:text-5xl font-bold mt-2">
+                <span id="home-links-title" class="gradient-text">Quick Links</span>
+              </h2>
+            </div>
+            <div id="quick-links" class="grid gap-3"></div>
+            
+            <div class="glass rounded-2xl p-6 space-y-3">
+              <div class="flex items-center gap-3">
+                <div class="w-3 h-3 rounded-full bg-primary pulse-glow"></div>
+                <span id="home-links-card-title" class="text-white font-semibold">Game Day Essentials</span>
+              </div>
+              <p id="home-links-card-text" class="text-white/60">Uniform? Check. Drink bottle? Check. Be early, be loud, be respectful.</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PROGRAMS -->
-    <section class="space-y-4">
-      <div class="flex items-center justify-between">
-        <div>
-          <p class="text-xs uppercase tracking-[0.3em] text-clubGreen">Programs</p>
-          <h2 class="text-3xl font-semibold text-clubDark">Pathways for every player</h2>
-        </div>
-        <a href="join.html" class="text-sm text-clubGreen">View all</a>
-      </div>
-      <div class="grid md:grid-cols-3 gap-4">
-        <article class="rounded-2xl bg-white border border-slate-200 p-4 shadow-card space-y-2">
-          <h3 class="text-lg font-semibold text-clubDark">U8-U10 Foundations</h3>
-          <p class="text-slate-600">High-touch coaching, fun drills, and lots of ball touches to build confidence.</p>
-          <a href="join.html#u8u10" class="text-sm text-clubGreen">Learn more ?</a>
-        </article>
-        <article class="rounded-2xl bg-white border border-slate-200 p-4 shadow-card space-y-2">
-          <h3 class="text-lg font-semibold text-clubDark">Juniors U12-U18</h3>
-          <p class="text-slate-600">Structured training blocks, game IQ, and fitness to compete and enjoy the game.</p>
-          <a href="join.html#juniors" class="text-sm text-clubGreen">Learn more ?</a>
-        </article>
-        <article class="rounded-2xl bg-white border border-slate-200 p-4 shadow-card space-y-2">
-          <h3 class="text-lg font-semibold text-clubDark">Coaches & Volunteers</h3>
-          <p class="text-slate-600">Guides, templates, and mentorship to run consistent, safe, welcoming sessions.</p>
-          <a href="coaches.html" class="text-sm text-clubGreen">See resources ?</a>
-        </article>
-      </div>
-    </section>
-
-    <!-- GALLERY / STORY -->
-    <section class="space-y-4">
-      <div class="flex items-center justify-between">
-        <div>
-          <p class="text-xs uppercase tracking-[0.3em] text-clubGreen">Club moments</p>
-          <h2 class="text-3xl font-semibold text-clubDark">On-court and in the stands</h2>
-        </div>
-        <span class="text-sm text-slate-500">Swipe through</span>
-      </div>
-      <div class="grid md:grid-cols-3 gap-4">
-        <div class="rounded-3xl overflow-hidden border border-slate-200 shadow-card bg-white">
-          <img src="U12-Knights.jpg" alt="Game" class="h-56 w-full object-cover" />
-          <div class="p-3 text-sm text-slate-700">Fast breaks and teamwork at training night.</div>
-        </div>
-        <div class="rounded-3xl overflow-hidden border border-slate-200 shadow-card bg-white">
-          <img src="U14-West-Raiders.jpg" alt="Team" class="h-56 w-full object-cover" />
-          <div class="p-3 text-sm text-slate-700">Huddles that build confidence before tip-off.</div>
-        </div>
-        <div class="rounded-3xl overflow-hidden border border-slate-200 shadow-card bg-white flex flex-col justify-between">
-          <div class="p-4 space-y-2">
-            <p class="text-xs uppercase tracking-[0.25em] text-clubGreen">What parents say</p>
-            <p class="text-slate-800 text-sm">�West feels like family. Coaches are supportive and my kid loves every session.�</p>
-            <p class="text-xs text-slate-500">� Local parent</p>
+    <section class="py-24 px-6 relative">
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent"></div>
+      <div class="max-w-6xl mx-auto relative">
+        <div class="section-fade">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="h-px flex-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+            <span id="home-sponsors-tag" class="text-primary uppercase tracking-[0.3em] text-sm font-medium">Partners</span>
+            <div class="h-px flex-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
           </div>
-          <div class="bg-gradient-to-r from-green-100 to-emerald-100 h-12 w-full"></div>
+          <h2 class="text-4xl md:text-5xl font-bold text-center mb-4">
+            <span id="home-sponsors-title" class="gradient-text">Our Sponsors</span>
+          </h2>
+          <p id="home-sponsors-desc" class="text-center text-white/60 max-w-2xl mx-auto mb-12">We're grateful for the partners who keep our programs running strong.</p>
+        </div>
+        
+        <div id="sponsor-logos" class="grid grid-cols-2 md:grid-cols-3 gap-6 section-fade"></div>
+        
+        <div class="text-center mt-8">
+          <a id="home-sponsors-cta" href="sponsors.html" class="inline-flex items-center gap-2 text-primary font-medium group">
+            Become a sponsor 
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- NEWS + QUICK LINKS -->
-    <section class="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 items-start">
-      <div class="space-y-4">
-        <div class="flex items-center justify-between">
-          <h2 class="text-2xl font-semibold text-clubDark">Latest news</h2>
-          <a href="about.html#news" class="text-sm text-clubGreen">See all</a>
-        </div>
-        <div id="news-grid" class="grid sm:grid-cols-2 gap-4"></div>
-      </div>
-      <div class="space-y-4">
-        <h2 class="text-2xl font-semibold text-clubDark">Quick links</h2>
-        <div id="quick-links" class="grid gap-3"></div>
-        <div class="rounded-2xl bg-white border border-slate-200 p-4 shadow-card text-sm space-y-2">
-          <div class="flex items-center gap-2 text-clubGreen">
-            <span class="h-2 w-2 rounded-full bg-clubGreen"></span>
-            Game day essentials
+    <section class="py-24 px-6">
+      <div class="max-w-4xl mx-auto section-fade">
+        <div class="glass glow rounded-3xl p-8 md:p-12 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl"></div>
+          <div class="absolute bottom-0 left-0 w-48 h-48 bg-accent/20 rounded-full blur-3xl"></div>
+          
+          <div class="relative text-center space-y-6">
+            <span id="home-cta-tag" class="text-primary uppercase tracking-[0.3em] text-sm font-medium">Ready to play?</span>
+            <h2 class="text-4xl md:text-5xl font-bold">
+              <span id="home-cta-title">Join West Basketball</span> <span id="home-cta-highlight" class="gradient-text">Today</span>
+            </h2>
+            <p id="home-cta-body" class="text-white/70 text-lg max-w-xl mx-auto">Pick your age group, grab a uniform, and we'll see you on court. Coaches and volunteers always welcome.</p>
+            
+            <div class="flex flex-wrap justify-center gap-4 pt-4">
+              <a id="home-cta-primary" href="join.html" class="btn-primary inline-flex items-center gap-2 rounded-full px-8 py-4 text-white font-semibold text-lg">
+                Register Now
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+              </a>
+              <a id="home-cta-secondary" href="coaches.html" class="btn-secondary inline-flex items-center gap-2 rounded-full px-8 py-4 text-white font-medium text-lg">
+                Volunteer With Us
+              </a>
+            </div>
           </div>
-          <p class="text-slate-600">Uniform? Check. Drink bottle? Check. Be early, be loud, be respectful.</p>
         </div>
-      </div>
-    </section>
-
-    <!-- SPONSORS -->
-    <section class="space-y-4">
-      <div class="flex items-center justify-between">
-        <h2 class="text-2xl font-semibold text-clubDark">Sponsors</h2>
-        <a href="sponsors.html" class="text-sm text-clubGreen">Sponsor the club</a>
-      </div>
-      <p class="text-slate-600">We are grateful for the partners who keep our programs running. Swap logos in the admin page anytime.</p>
-      <div id="sponsor-logos" class="grid grid-cols-2 sm:grid-cols-3 gap-4"></div>
-    </section>
-
-    <!-- CTA -->
-    <section class="rounded-3xl border border-slate-200 bg-white shadow-card p-8 grid md:grid-cols-[1.2fr_0.8fr] gap-6 items-center">
-      <div class="space-y-3">
-        <p class="text-xs uppercase tracking-[0.3em] text-clubGreen">Ready?</p>
-        <h3 class="text-2xl font-semibold text-clubDark">Join West Basketball or volunteer with us</h3>
-        <p class="text-slate-700">Pick your age group, grab a uniform, and we'll see you on court. Coaches and volunteers always welcome.</p>
-        <div class="flex gap-3 flex-wrap">
-          <a href="join.html" class="rounded-full bg-clubGreen px-6 py-3 text-white font-semibold shadow-card">Register today</a>
-          <a href="coaches.html" class="rounded-full border border-slate-200 px-6 py-3 text-slate-800 hover:border-clubGreen">Coach / volunteer</a>
-        </div>
-      </div>
-      <div class="rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-card">
-        <img src="U14-West-Raiders.jpg" alt="Players" class="h-52 w-full object-cover" />
       </div>
     </section>
   </main>
 
-  <footer class="border-t border-slate-200 bg-white" id="site-footer"></footer>
+  <footer class="border-t border-white/10 bg-darker" id="site-footer"></footer>
 
   <script src="data.js"></script>
   <script src="common.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    function renderHomePage() {
+      const data = window.siteContent || {};
+      const home = data.pages?.home || {};
+      const setText = (id, value) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = value ?? "";
+      };
+      const setFormatted = (id, value) => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = formatMultiline(value ?? "");
+      };
+      const arrowSm = '<svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>';
+      const arrowLg = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>';
+
+      setText("home-programs-tag", home.programsTag);
+      setText("home-programs-title", home.programsTitle);
+      setText("home-gallery-tag", home.galleryTag);
+      setText("home-gallery-title", home.galleryTitle);
+      setFormatted("home-gallery-subtitle", home.gallerySubtitle);
+      setText("home-news-tag", home.newsTag);
+      setText("home-news-title", home.newsTitle);
+      setText("home-links-tag", home.linksTag);
+      setText("home-links-title", home.linksTitle);
+      setText("home-links-card-title", home.linksCardTitle);
+      setFormatted("home-links-card-text", home.linksCardText);
+      setText("home-sponsors-tag", home.sponsorsTag);
+      setText("home-sponsors-title", home.sponsorsTitle);
+      setFormatted("home-sponsors-desc", home.sponsorsDescription);
+      setText("home-cta-tag", home.ctaTag);
+      setText("home-cta-title", home.ctaTitle);
+      setText("home-cta-highlight", home.ctaHighlight);
+      setFormatted("home-cta-body", home.ctaDescription);
+
+      const programsContainer = document.getElementById("programs-list");
+      if (programsContainer) {
+        const programs = home.programs || [];
+        programsContainer.innerHTML = programs
+          .map(
+            (program, idx) => `
+            <article class="glass card-hover rounded-3xl p-8 space-y-4 ${idx === 1 ? "md:-translate-y-4" : ""}">
+              <div class="w-14 h-14 rounded-2xl bg-primary/20 flex items-center justify-center">
+                <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              </div>
+              <div class="flex items-center justify-between gap-3">
+                <h3 class="text-2xl font-bold text-white">${program.title || "Program"}</h3>
+                ${program.badge ? `<span class="text-xs text-primary border border-primary/30 rounded-full px-3 py-1 bg-primary/10">${program.badge}</span>` : ""}
+              </div>
+              <p class="text-white/60 leading-relaxed">${formatMultiline(program.description || "")}</p>
+              <a href="${program.ctaHref || "#"}" class="inline-flex items-center gap-2 text-primary font-medium group">
+                ${program.ctaLabel || "Learn more"} 
+                ${arrowSm}
+              </a>
+            </article>
+          `
+          )
+          .join("\n");
+      }
+
+      const featuredContainer = document.getElementById("home-featured-gallery");
+      if (featuredContainer) {
+        const photos = home.featuredPhotos || [];
+        const cards = photos.map((photo, idx) => {
+          const spanClasses = idx === 0 ? "lg:col-span-2 lg:row-span-2" : "";
+          const minHeight = idx === 0 ? 'style="min-height: 400px;"' : "";
+          return `
+            <div class="image-card card-hover ${spanClasses}">
+              <img src="${photo.src}" alt="${photo.title || "Featured photo"}" class="w-full h-full object-cover" ${minHeight} />
+              <div class="absolute bottom-0 left-0 right-0 p-${idx === 0 ? "6" : "4"} z-10">
+                <p class="text-white font-medium text-${idx === 0 ? "lg" : "base"}">${photo.title || ""}</p>
+                ${photo.subtitle ? `<p class="text-white/60 text-sm mt-1">${photo.subtitle}</p>` : ""}
+              </div>
+            </div>
+          `;
+        });
+        if (home.quote?.text) {
+          cards.push(`
+            <div class="glass-dark card-hover rounded-3xl p-8 flex flex-col justify-between min-h-64">
+              <div>
+                <div class="flex items-center gap-2 text-primary mb-4">
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                </div>
+                <p class="text-white/90 text-lg italic leading-relaxed">${formatMultiline(home.quote.text || "")}</p>
+              </div>
+              <p class="text-white/50 text-sm mt-4">${home.quote.attribution || ""}</p>
+            </div>
+          `);
+        }
+        featuredContainer.innerHTML = cards.join("\n");
+      }
+
+      const sponsorCta = document.getElementById("home-sponsors-cta");
+      if (sponsorCta) {
+        sponsorCta.innerHTML = `${home.sponsorsCtaLabel || "Become a sponsor"} ${arrowSm}`;
+        sponsorCta.href = home.sponsorsCtaHref || "sponsors.html";
+      }
+
+      const primaryCta = document.getElementById("home-cta-primary");
+      if (primaryCta) {
+        primaryCta.href = home.ctaPrimary?.href || "join.html";
+        primaryCta.innerHTML = `${home.ctaPrimary?.label || "Register Now"} ${arrowLg}`;
+      }
+      const secondaryCta = document.getElementById("home-cta-secondary");
+      if (secondaryCta) {
+        secondaryCta.href = home.ctaSecondary?.href || "coaches.html";
+        secondaryCta.textContent = home.ctaSecondary?.label || "Volunteer With Us";
+      }
+    }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        renderNav('home');
+        renderFooter();
+        renderHero();
+        renderHomePage();
+        renderNews('news-grid');
+        renderQuickLinks('quick-links');
+        renderSponsors('sponsor-logos');
+      
+      // Load dynamic hero background image
+      const parallaxImg = document.getElementById('parallax-img');
+      const heroBackground = window.siteContent?.images?.heroBackground;
+      if (heroBackground && parallaxImg) {
+        parallaxImg.src = heroBackground;
+      }
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        if (parallaxImg) {
+          parallaxImg.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+      });
+      
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, observerOptions);
+      
+      document.querySelectorAll('.section-fade').forEach(el => observer.observe(el));
+    });
+
+    window.addEventListener('sitecontent:updated', () => {
       renderNav('home');
       renderFooter();
       renderHero();
+      renderHomePage();
       renderNews('news-grid');
       renderQuickLinks('quick-links');
       renderSponsors('sponsor-logos');
-      const clubIntro = document.getElementById('club-intro-text');
-      if (clubIntro) clubIntro.textContent = window.siteContent.club.homeIntro;
-      const homeAbout = document.getElementById('home-about');
-      if (homeAbout) homeAbout.textContent = window.siteContent.about.intro;
-      const homeValues = document.getElementById('home-values');
-      if (homeValues) {
-        const values = window.siteContent.about.values || [];
-        homeValues.innerHTML = values.map(v => `<span class="px-3 py-1 rounded-full border border-slate-200 bg-white shadow-card text-slate-800">${v}</span>`).join('');
-      }
     });
   </script>
 </body>
